@@ -1,0 +1,37 @@
+﻿
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+
+
+
+
+
+
+
+
+
+<form asp-action="setOffset" class="form-inline">
+	<div class="text-center">
+		<td>@ViewBag.report.FTranslation: </td>
+		<select class="custom-select" name="selected_report" id="selected_report">
+                                @foreach (var item in ViewBag.ListOfReports)
+                                {
+                                    <option value="@item.FField">@item.FField</option>
+                                }
+                            </select>
+		<br /><br /><br />
+		<th class="text small">
+			@ViewBag.Number.FTranslation:
+		</th>
+		<input class="form-control mr-sm-2" id="offset" name="offset" type="number" value="" placeholder='@ViewBag.NumberPH.FTranslation' step="any" required>
+		<div class="col-6 column">
+			<br /><br />
+			<div class="form-group">
+				<input type="submit" value='@ViewBag.Submit.FTranslation' class="btn btn-primary" />
+			</div>
+		</div>
+
+	</div>
+</form>

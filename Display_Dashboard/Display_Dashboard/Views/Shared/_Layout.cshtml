@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Display_Dashboard</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand navbar-light bg-light">
+			<ul class="navbar-nav flex-row  d-none d-md-flex">
+				<li class="nav-item dropdown-menu-left">
+					<a class="nav-link dropdown-toggle mr-md-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						@ViewBag.langSelected
+					</a>
+					@if (ViewBag.langSelected == null)
+					{
+						<div class="dropdown-menu dropdown-menu-left" aria-labelledby="bd-versions">
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToEN">EN</a>
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToDE">DE</a>
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToFR">FR</a>
+						</div>
+					}
+
+
+					@if (ViewBag.langSelected == "EN")
+					{
+						<div class="dropdown-menu dropdown-menu-left" aria-labelledby="bd-versions">
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToDE">DE</a>
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToFR">FR</a>
+						</div>
+					}
+					@if (ViewBag.langSelected == "DE")
+					{
+						<div class="dropdown-menu dropdown-menu-left" aria-labelledby="bd-versions">
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToEN">EN</a>
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToFR">FR</a>
+						</div>
+					}
+					@if (ViewBag.langSelected == "FR")
+					{
+						<div class="dropdown-menu dropdown-menu-left" aria-labelledby="bd-versions">
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToEN">EN</a>
+							<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToDE">DE</a>
+						</div>
+					}
+				</li>
+			</ul>
+
+			@if (@ViewBag.DateSelected != null)
+			{
+
+				<div class="row justify-content-center mx-auto">
+					<div class="col-20 column">
+					<div class="container">
+						<div class="row justify-content-md-center">
+							<div class="col col-lg-auto">
+								<form asp-action="DecOffset" class="form-inline">
+									<button class="btn btn-dark my-2 my-sm-0" type="submit">
+										<img src="~/arrow.png" alt="" width="26" height="26" />
+									</button>
+								</form>
+							</div>
+							<div class="col-md-auto">
+								<h2> @ViewBag.DateSelected </h2>
+
+							</div>
+							<div class="col col-lg-auto">
+								<form asp-action="IncOffset" class="form-inline">
+									<button class="btn btn-dark my-2 my-sm-0" type="submit">
+										<img src="~/arrow - Copy.png" alt="" width="26" height="26" />
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			}
+
+		</nav>
+
+
+
+		@* <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		@if (ViewBag.langSelected==null)
+		{
+		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+		<li class="nav-item dropdown">
+		<a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Language
+		</a>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToEN">EN</a>
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToDE">DE</a>
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToFR">FR</a>
+		</div>
+		</li>
+		</ul>
+		}
+		@if (ViewBag.langSelected == "EN")
+		{
+		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+		<li class="nav-item dropdown">
+		<a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		EN
+		</a>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToDE">DE</a>
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToFR">FR</a>
+		</div>
+		</li>
+		</ul>
+		}
+		@if (ViewBag.langSelected == "DE")
+		{
+		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+		<li class="nav-item dropdown">
+		<a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		DE
+		</a>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToEN">EN</a>
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToFR">FR</a>
+		</div>
+		</li>
+		</ul>
+		}
+		@if (ViewBag.langSelected == "FR")
+		{
+		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+		<li class="nav-item dropdown">
+		<a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		FR
+		</a>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToEN">EN</a>
+		<a class="dropdown-item" asp-controller="Home" asp-action="SwitchLangToDE">DE</a>
+		</div>
+		</li>
+		</ul>
+		}
+
+		<ul class="navbar-nav mr-auto">
+		<li class="nav-item active">
+		<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+		<a class="nav-link" href="#">Link</a>
+		</li>
+		<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Dropdown
+		</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		<a class="dropdown-item" href="#">Action</a>
+		<a class="dropdown-item" href="#">Another action</a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="#">Something else here</a>
+		</div>
+		</li>
+		<li class="nav-item">
+		<a class="nav-link disabled" href="#">Disabled</a>
+		</li>
+		</ul>
+		</nav>*@
+
+
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted">
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
